@@ -147,10 +147,7 @@ namespace ManageEmployees.Services.Implementations
             var employee = await _employeeRepository.GetEmployeeByIdAsync(employeeId)
                 ?? throw new Exception($"Echec de suppression d'un employée : Il n'existe aucun employée avec cet identifiant : {employeeId}");
 
-            if (employee.EmployeeDepartments.Any() || employee.Attendances.Any() || employee.LeaveRequests.Any())
-            {
-                throw new Exception("Echec de suppression car ce departement est lié à des employés");
-            }
+            
             await _employeeRepository.DeleteEmployeeByIdAsync(employeeId);
         }
 
