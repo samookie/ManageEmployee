@@ -44,7 +44,10 @@ namespace ManageEmployees.Controllers
             }
             else if (leaveRequest.EmployeeId < 1000)
                 return BadRequest("Echec de création d'une congé  : l'id de l'employée doit être supérieur à 1000");
-
+            else if (leaveRequest.RequestDate.Day > leaveRequest.EndDate.Day)
+            {
+                return BadRequest("Echec de création d'une congé  : Vous n'avez pas le droit de demander des congé après avoir effectué le congé");
+            }
             try
             {
                 var leaveRequestCreated = await _leaveRequestService.CreateLeaveRequestAsync(leaveRequest);
