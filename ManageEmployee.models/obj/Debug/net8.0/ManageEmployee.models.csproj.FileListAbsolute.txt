@@ -1,0 +1,12 @@
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\bin\Debug\net8.0\ManageEmployee.models.deps.json
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\bin\Debug\net8.0\ManageEmployee.models.dll
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\bin\Debug\net8.0\ManageEmployee.models.pdb
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\ManageEmployee.models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\ManageEmployee.models.AssemblyInfoInputs.cache
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\ManageEmployee.models.AssemblyInfo.cs
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\ManageEmployee.models.csproj.CoreCompileInputs.cache
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\ManageEmployee.models.sourcelink.json
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\ManageEmployee.models.dll
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\refint\ManageEmployee.models.dll
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\ManageEmployee.models.pdb
+C:\Users\s9108\OneDrive\Bureau\Devoir\ManageEmployee\ManageEmployee.models\obj\Debug\net8.0\ref\ManageEmployee.models.dll

@@ -39,6 +39,8 @@ namespace ManageEmployees.Services.Implementations
                 {
                     Id = department.DepartmentId,
                     Name = department.Name,
+                    Description = department.Description,
+                    Address = department.Address,
                 });
             }
 
@@ -62,6 +64,8 @@ namespace ManageEmployees.Services.Implementations
             {
                 Id = department.DepartmentId,
                 Name = department.Name,
+                Description = department.Description,
+                Address = department.Address,
             };
 
         }
@@ -136,6 +140,8 @@ namespace ManageEmployees.Services.Implementations
             {
                 Id = departmentCreated.DepartmentId,
                 Name = departmentCreated.Name,
+                Description = departmentCreated.Description,
+                Address = departmentCreated.Address,
             };
         }
     }

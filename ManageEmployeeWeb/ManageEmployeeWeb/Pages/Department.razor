@@ -1,0 +1,58 @@
+@page "/Department"
+@inject HttpClient Http
+
+<PageTitle>Department</PageTitle>
+
+<h1>Department</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (departments == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var department in departments)
+            {
+                <tr>
+                    <td>@department.Id</td>
+                    <td>@department.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private DepartmentList[]? departments;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            departments = await Http.GetFromJsonAsync<DepartmentList[]>("api/Department");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur lors de la récupération des données : {ex.Message}");
+        }
+
+    }
+
+    public class DepartmentList
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
+}

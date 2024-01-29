@@ -1,0 +1,71 @@
+﻿@page "/Attendance"
+@inject HttpClient Http
+
+<PageTitle>Employee</PageTitle>
+
+<h1>Employee</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (employees == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in employees)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.Position</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private EmployeeList[]? employees;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            employees = await Http.GetFromJsonAsync<EmployeeList[]>("api/Employee");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur lors de la récupération des données : {ex.Message}");
+        }
+
+    }
+
+    public class EmployeeList
+    {
+        public int Id { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
+
+        public string Position { get; set; }
+
+    }
+}

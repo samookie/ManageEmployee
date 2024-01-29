@@ -23,4 +23,8 @@
     <Folder Include="Mapper\Department\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ManageEmployee.models\ManageEmployee.models.csproj" />
+  </ItemGroup>
+
 </Project>

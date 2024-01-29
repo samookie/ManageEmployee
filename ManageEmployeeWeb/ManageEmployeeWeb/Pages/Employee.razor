@@ -1,0 +1,171 @@
+﻿@page "/Employee"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Employee Management</PageTitle>
+
+<h1>Employee Management</h1>
+
+<div class="input-group mb-3">
+    <input type="number" min="1000" class="form-control" @bind="employeeID" placeholder="Entrez l'ID de l'employé" />
+    <div class="input-group-append">
+        <button class="btn btn-primary" @onclick="SearchEmployees">Rechercher</button>
+    </div>
+</div>
+@if (selectedEmployee != null)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Employee Details</h5>
+            <p class="card-text">ID: @selectedEmployee.Id</p>
+            <p class="card-text">First Name: @selectedEmployee.FirstName</p>
+            <p class="card-text">Last Name: @selectedEmployee.LastName</p>
+            <p class="card-text">Email: @selectedEmployee.Email</p>
+            <p class="card-text">Position: @selectedEmployee.Position</p>
+            <button @onclick="() => EditEmployee(selectedEmployee)">Edit</button>
+            <button @onclick="() => DeleteEmployee(selectedEmployee.Id)">Delete</button>
+        </div>
+    </div>
+}
+else
+{
+    <!-- Table pour afficher les employés -->
+    @if (employees == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Email</th>
+                    <th>Position</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var employee in employees)
+                {
+                    <tr>
+                        <td>@employee.Id</td>
+                        <td>@employee.FirstName</td>
+                        <td>@employee.LastName</td>
+                        <td>@employee.Email</td>
+                        <td>@employee.Position</td>
+                        <td>
+                            <button @onclick="() => EditEmployee(employee)">Edit</button>
+                            <button @onclick="() => DeleteEmployee(employee.Id)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+<!-- Formulaire pour ajouter ou éditer un employé -->
+<EditEmployeeForm Employee="@selectedEmployee" OnClose="CloseEditForm" />
+
+@code {
+    private EmployeeList[] employees;
+    private EmployeeList selectedEmployee;
+    //private CreateEmployee newEmployee = new CreateEmployee(); // Nouvel employé pour l'ajout
+    private int employeeID;
+
+
+    // Méthode pour charger les employés lors de l'initialisation de la page
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadEmployees();
+    }
+
+
+    // Méthode pour rechercher des employés
+    private async Task SearchEmployees()
+    {
+        try
+        {
+            if (employeeID != 0)
+            {
+                // Recherche d'un employé par ID
+                selectedEmployee = await Http.GetFromJsonAsync<EmployeeList>($"api/Employee/{employeeID}");
+            }
+            else
+            {
+                // Si le terme de recherche est vide, rechargez tous les employés
+                await LoadEmployees();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error searching employees: {ex.Message}");
+        }
+    }
+    // Méthode pour charger les employés depuis l'API
+    private async Task LoadEmployees()
+    {
+        try
+        {
+            employees = await Http.GetFromJsonAsync<EmployeeList[]>("api/Employee");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading employees: {ex.Message}");
+        }
+    }
+
+    // Méthode pour ouvrir le formulaire d'édition avec un employé sélectionné
+    private void EditEmployee(EmployeeList employee)
+    {
+        selectedEmployee = employee;
+    }
+
+    // Méthode pour fermer le formulaire d'édition
+    private void CloseEditForm()
+    {
+        selectedEmployee = null;
+        // Rechargez les employés après la mise à jour
+        LoadEmployees();
+    }
+
+    // Méthode pour supprimer un employé
+    private async Task DeleteEmployee(int employeeId)
+    {
+        if (await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete employee {employeeId}?"))
+        {
+            try
+            {
+                var response = await Http.DeleteAsync($"api/Employee/{employeeId}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Rechargez les employés après la suppression
+                    await LoadEmployees();
+                }
+                else
+                {
+                    Console.WriteLine($"Error deleting employee: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting employee: {ex.Message}");
+            }
+        }
+    }
+
+    // Classe EmployeeList
+    public class EmployeeList
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Position { get; set; }
+    }
+}

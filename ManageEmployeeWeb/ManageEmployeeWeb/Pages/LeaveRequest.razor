@@ -1,0 +1,113 @@
+@page "/LeaveRequest"
+@inject HttpClient Http
+
+<PageTitle>LeaveRequest</PageTitle>
+
+<h1>Leave Request</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<div class="input-group mb-3">
+    <input type="number" min="1000" class="form-control" @bind="employeeID" placeholder="Entrez l'ID de l'employé" />
+    <div class="input-group-append">
+        <button class="btn btn-primary" @onclick="SearchLeaveRequest">Rechercher</button>
+    </div>
+</div>
+@if (lvs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EmployeeID</th>
+                <th>RequestDate</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lv in lvs)
+            {
+                <tr>
+                    <td>@lv.Id</td>
+                    <td>@lv.EmployeeID</td>
+                    <td>@lv.RequestDate</td>
+                    <td>@lv.StartDate</td>
+                    <td>@lv.EndDate</td>
+                    @if (lv.LeaveRequestStatusID == 1 ){
+                        <td>Pending</td>
+                    }
+                    else if (lv.LeaveRequestStatusID == 2)
+                    {
+                        <td>Accepted</td>
+                    }
+                    else if (lv.LeaveRequestStatusID == 3)
+                    {
+                        <td>Refused</td>
+                    }
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private LeaveRequestList[]? lvs;
+    private int selectedLv;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            lvs = await Http.GetFromJsonAsync<LeaveRequestList[]>("leaveRequests/1004");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine($"Erreur lors de la récupération des données : {ex.Message}");
+        }
+
+    }
+    private async Task SearchLeaveRequest()
+    {
+        try
+        {
+            if (employeeID != 0)
+            {
+                // Recherche d'un employé par ID
+                selectedLv = await Http.GetFromJsonAsync<LeaveRequestList>($"leaveRequests/{EmployeeID}");
+            }
+            else
+            {
+                // Si le terme de recherche est vide, rechargez tous les LeaveRequests
+                await LoadEmployees();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error searching employees: {ex.Message}");
+        }
+    }
+    public class LeaveRequestList
+    {
+        public int Id { get; set; }
+
+        public int EmployeeID { get; set; }
+
+        public DateTime RequestDate { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public int LeaveRequestStatusID { get; set; }
+
+    }
+}

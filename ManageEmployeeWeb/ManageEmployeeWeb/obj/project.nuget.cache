@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qKLN6bmQP3dAptv6J01h2oWqahxoDFgCpegIj6oboWkQgLGtEexorXrTCcStqShQKUz7V41Myhwja6R+M8s/4w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\s9108\\OneDrive\\Bureau\\Devoir\\ManageEmployee\\ManageEmployeeWeb\\ManageEmployeeWeb\\ManageEmployeeWeb.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\s9108\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.server\\8.0.1\\microsoft.aspnetcore.components.webassembly.server.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

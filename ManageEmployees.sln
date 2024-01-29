@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManageEmployees", "ManageEmployees\ManageEmployees.csproj", "{0B7E9139-A302-44AD-8C1D-512772DC032F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManageEmployees", "ManageEmployees\ManageEmployees.csproj", "{0B7E9139-A302-44AD-8C1D-512772DC032F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManageEmployee.models", "ManageEmployee.models\ManageEmployee.models.csproj", "{B201100B-353C-41AF-8505-76333F40CA0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManageEmployee", "E:\Ecole\ManageEmployee\ManageEmployee.csproj", "{6D98FEC2-9C7E-4B81-803C-7EDBA27B197C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{0B7E9139-A302-44AD-8C1D-512772DC032F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B7E9139-A302-44AD-8C1D-512772DC032F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B7E9139-A302-44AD-8C1D-512772DC032F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B201100B-353C-41AF-8505-76333F40CA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B201100B-353C-41AF-8505-76333F40CA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B201100B-353C-41AF-8505-76333F40CA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B201100B-353C-41AF-8505-76333F40CA0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D98FEC2-9C7E-4B81-803C-7EDBA27B197C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D98FEC2-9C7E-4B81-803C-7EDBA27B197C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D98FEC2-9C7E-4B81-803C-7EDBA27B197C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D98FEC2-9C7E-4B81-803C-7EDBA27B197C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
