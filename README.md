@@ -1,5 +1,7 @@
 # ManageEmployee
 Bienvenue dans le projet ManageEmployee
+## Requirements
+Lancez l'application via Visual Studio 2022
 
 ## Setup
 - Pour commencer initialiser la base de donnée en sql server grace au fichier à la racine : bddManageEmployees.sql
